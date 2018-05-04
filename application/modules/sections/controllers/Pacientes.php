@@ -257,4 +257,17 @@ class Pacientes extends Config{
             $this->setOutput(array('accion'=>'0'));
         }
     }
+    public function Chat() {
+        $sql['info']= $this->config_mdl->sqlQuery("SELECT emp.empleado_id, emp.empleado_nombre, emp.empleado_ap, emp.empleado_am,emp.empleado_socket_id 
+                                                    FROM 
+                                                            sigh_empleados AS emp, 
+                                                            sigh_protocolos AS prot, 
+                                                            sigh_protocolos_pacientes AS pp
+                                                    WHERE 
+                                                            emp.empleado_id=prot.empleado_id AND
+                                                            prot.protocolo_id=pp.protocolo_id AND
+                                                            emp.empleado_id=prot.empleado_id AND
+                                                            pp.empleado_id=".$this->UMAE_USER)[0];
+        $this->load->view('Pacientes/index_chat',$sql);
+    }
 }

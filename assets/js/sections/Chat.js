@@ -1,25 +1,33 @@
 $(document).ready(function (e) {
     $('#chat_para').select2();
-    $('body').on('click','.start-chat-user',function (e) {
-        var chat_para=$(this).attr('data-id');
-        var chat_para_socket=$(this).attr('data-socket');
-        var chat_de=$('input[name=chat_de]').val();
-        $('.chat-con').html('CHAT CON: '+$(this).attr('data-user'));
-        $('input[name=chat_para]').val(chat_para);
-        $('input[name=chat_para_socket]').val(chat_para_socket);
-        $('.chat-with').text($(this).attr('data-user'))
-        $('input[name=chat_msj]').removeAttr('readonly');
-        $('.chat-msj').html("");
-        sighAjaxPost({
-            chat_de:chat_de,
-            chat_para:chat_para
-        },base_url+'Sections/Chat/AjaxMessages',function (msj) {
-            $.each(msj,function (i,e) {
-                appendMessage(e)
+    if($('input[name=tipo_chat]').val()!=undefined){
+        setTimeout(function () {
+            var chat_para=$('input[name=chat_para]').val();
+            var chat_para_socket=$('input[name=chat_para_socket]').val();
+            var chat_de=$('input[name=chat_de]').val();
+            $('input[name=chat_para]').val(chat_para);
+            $('input[name=chat_para_socket]').val(chat_para_socket);
+            $('input[name=chat_msj]').removeAttr('readonly');
+            $('.chat-msj').html("");
+            sighAjaxPost({
+                chat_de:chat_de,
+                chat_para:chat_para
+            },base_url+'Sections/Chat/AjaxMessages',function (msj) {
+                $.each(msj,function (i,e) {
+                    appendMessage(e)
+                });
+                animateScroll();
             });
-            animateScroll();
-        })
-    })
+        },4000);
+        setTimeout(function () {
+            sighAjaxPost({
+                empleado_id:$('input[name=chat_para]').val()
+            },base_url+'Sections/Chat/AjaxGetSocket',function (response) {
+                $('input[name=chat_para_socket]').val(response.empleado_socket_id);
+            })
+        },5000);
+    }
+    
     $('input[name=chat_msj]').keypress(function (e) {
         let chat_msj=$(this).val();
         let input=$(this);

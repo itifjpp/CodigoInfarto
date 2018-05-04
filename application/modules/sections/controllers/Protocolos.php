@@ -31,7 +31,52 @@ class Protocolos extends Config{
         }
         $this->setOutput(array('action'=>1));
     }
-    public function AgregarPacientes() {
-        $this->load->view('Protocolos/AgregarPacientes');
+    public function Pacientes() {
+        $sql['Gestion']= $this->config_mdl->sqlQuery("  SELECT 
+                                                            prot.protocolo_id,
+                                                            emp.empleado_id, emp.empleado_nombre, emp.empleado_ap, emp.empleado_am FROM sigh_empleados AS emp, sigh_protocolos AS prot, sigh_protocolos_pacientes AS pp 
+                                                        WHERE pp.protocolo_id=prot.protocolo_id AND
+                                                              pp.empleado_id=emp.empleado_id AND 
+                                                              pp.protocolo_id=".$_GET['protocolo']);
+        $this->load->view('Protocolos/index_pacientes',$sql);
+    }
+    public function BuscarPacientes() {
+        $this->load->view('Protocolos/index_buscar');
+    }
+    public function AjaxBuscarPaciente() {
+        $inputSearch= $this->input->post('empleado_nombre');
+        $sql= $this->config_mdl->sqlQuery("SELECT empleado_id, CONCAT_WS(' ',emp.empleado_nombre,emp.empleado_ap,emp.empleado_ap) AS empleado_nombre 
+                FROM sigh_empleados AS emp HAVING empleado_nombre LIKE '%$inputSearch%' LIMIT 200");
+        $tr='';
+        foreach ($sql as $value) {
+            $tr.=   '<tr>
+                        <td>'.$value['empleado_nombre'].' '.$value['empleado_ap'].' '.$value['empleado_am'].'</td>
+                        <td>
+                            <i class="fa fa-user-plus sigh-color i-20 pointer protocolo-agregar-usuario" data-id="'.$value['empleado_id'].'"></i>
+                        </td>
+                    </tr>';
+        }
+        $this->setOutput(array('tr'=>$tr));
+    }
+    public function AjaxUsuarioProtocolo() {
+        $sql=$this->config_mdl->sqlGetDataCondition('sigh_protocolos_pacientes',array(
+            'protocolo_id'=> $this->input->post('protocolo_id'),
+            'empleado_id'=> $this->input->post('empleado_id')
+        ));
+        if(empty($sql)){
+            $this->config_mdl->sqlInsert('sigh_protocolos_pacientes',array(
+                'protocolo_id'=> $this->input->post('protocolo_id'),
+                'empleado_id'=> $this->input->post('empleado_id')
+            ));
+            $this->setOutput(array('action'=>1));
+        }else{
+            $this->setOutput(array('action'=>2));
+        }
+    }
+    public function Chat() {
+        $sql['info']= $this->config_mdl->sqlGetDataCondition('sigh_empleados',array(
+            'empleado_id'=> $this->input->get_post('emp')
+        ))[0];
+        $this->load->view('Protocolos/index_chat',$sql);
     }
 }

@@ -41,4 +41,11 @@ class Chat extends Config{
         $sqlPara= $this->config_mdl->sqlQuery("SELECT emp.empleado_socket_id FROM sigh_empleados AS emp WHERE empleado_id=$chat_para");
         $this->setOutput(array('chat_msj'=>1));
     }
+    public function AjaxGetSocket() {
+        $sql= $this->config_mdl->sqlGetDataCondition('sigh_empleados',array(
+            'empleado_id'=> $this->input->post('empleado_id')
+        ))[0];
+        $this->setOutput(array('empleado_socket_id'=>$sql['empleado_socket_id']));
+        
+    }
 }

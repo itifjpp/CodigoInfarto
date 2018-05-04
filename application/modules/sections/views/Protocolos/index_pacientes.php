@@ -2,18 +2,16 @@
 <div class="page-content">
     <div class="content">
         <div class="row">
-            <div class="col-md-10 col-centered">
+            <div class="col-md-8 col-centered">
                 <div class="grid simple">
                     <div class="grid-title sigh-background-secundary">
-                        <h4 class="color-white no-margin text-uppercase">PROTOCOLOS</h4>
-                        <a class="btn btn-circle red btn-60 btn-protocolo-add pull-right" data-id="0" data-nombre="" data-descripcion="" data-action="add">
+                        <h4 class="color-white no-margin text-uppercase">PACIENTES AGREGADOS A ESTE PROTOCOLO</h4>
+                        <a href="<?= base_url()?>Sections/Protocolos/BuscarPacientes?protocolo=<?=$_GET['protocolo']?>" class="btn btn-circle red btn-60 pull-right">
                             <i class="material-icons color-white i-24" >library_add</i>
                         </a>
                     </div>
                     <div class="grid-body">
-                        <div class="row">
-                            
-                        </div>
+                        
                         <div class="row">
 
                             <div class="col-md-12">
@@ -22,8 +20,7 @@
                                     <thead>
                                         <tr>
                                             <th data-sort-ignore="true" style="width: 5%">N°</th>
-                                            <th data-sort-ignore="true" style="width: 20%">PROTOCOLO</th>
-                                            <th data-sort-ignore="true" style="width: 70%">DESCRIPCIÓN</th>
+                                            <th data-sort-ignore="true" style="width: 60%">PACIENTE</th>
                                             <th>ACCIONES</th>
                                         </tr>
                                     </thead>
@@ -31,12 +28,10 @@
                                         <?php $i=0; foreach ($Gestion as $value) { $i++;?>
                                         <tr>
                                             <td><?=$i?></td>
-                                            <td><?=$value['protocolo_nombre']?></td>
-                                            <td><?=$value['protocolo_descripcion']?></td>
+                                            <td><?=$value['empleado_nombre']?> <?=$value['empleado_ap']?> <?=$value['empleado_am']?></td>
                                             <td>
-                                                <i class="fa fa-pencil sigh-color i-20 btn-protocolo-add pointer" data-id="<?=$value['protocolo_id']?>" data-nombre="<?=$value['protocolo_nombre']?>" data-descripcion="<?=$value['protocolo_descripcion']?>" data-action="edit"></i>&nbsp;
-                                                <a href="<?= base_url()?>Sections/Protocolos/Pacientes?protocolo=<?=$value['protocolo_id']?>">
-                                                    <i class="fa fa-users sigh-color i-20"></i>
+                                                <a href="<?= base_url()?>Sections/Protocolos/Chat?emp=<?=$value['empleado_id']?>&prot=<?=$value['protocolo_id']?>">
+                                                    <i class="fa fa-commenting-o sigh-color i-20"></i>
                                                 </a>
                                             </td>
                                         </tr>
