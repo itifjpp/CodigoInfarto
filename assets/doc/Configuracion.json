@@ -1,0 +1,12 @@
+{
+    "UnidadMedica": "DDr. Victorio de la Fuente Narv\u00e1ez",
+    "UnidadMedicaTipo": "Hospital de Traumatolog\u00eda",
+    "UnidadMedicaClasificacion": "UMAE",
+    "UnidadMedicaDireccion": "Av. Colector 15 s\/n Esq. Av. Instituto Polit\u00e9cnico Nacional. Col. Magdalena de las Salinas, Delg. Gustavo A. Madero. C.P. 07760.",
+    "UnidadMedicaAdministrador": "admin",
+    "UnidadMedicaLogo": "UM_LOGO.",
+    "BDUser": "sig_um5293",
+    "BDPass": "sigUM-5293-#$",
+    "BDName": "sig_umae",
+    "BDIp": "localhost"
+}

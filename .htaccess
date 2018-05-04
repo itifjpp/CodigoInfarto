@@ -1,0 +1,14 @@
+<IfModule mod_rewrite.c>
+    php_value memory_limit 3096M
+    #REDIRECCIONAMIENTO DE HTTP A HTTPS
+    RewriteCond %{HTTPS} off
+    RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R,L]
+    #URL AMIGABLE (ELIMINACIÓN DEL INDEX.PHP)
+    RewriteEngine On 
+    RewriteCond %{REQUEST_FILENAME} !-f 
+    RewriteCond %{REQUEST_FILENAME} !-d 
+    RewriteRule ^(.*)$ index.php/$1 [L] 
+</IfModule>
+#<IfModule mod_filter.c>
+#    AddOutputFilterByType DEFLATE application/atom+xml application/javascript application/json application/rss+xml application/xhtml+xml application/xml image/svg+xml image/x-icon text/css text/html text/plain text/x-component text/xml
+#</IfModule>

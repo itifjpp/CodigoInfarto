@@ -1,0 +1,12 @@
+{
+    "MOD_HORACERO": "Si",
+    "MOD_ENFERMERIA_TRIAGE_HC": "No",
+    "MOD_ENFERMERIA_TRIAGE": "Si",
+    "MOD_MEDICO_TRIAGE": "Si",
+    "MOD_ASISTENTE_MEDICA": "Si",
+    "MOD_CONSULTORIOS": "Si",
+    "MOD_OBSERVACION": "Si",
+    "MOD_CHOQUE": "Si",
+    "MOD_QUIROFANOS": "Si",
+    "MOD_PISOS": "Si"
+}
