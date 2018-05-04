@@ -39,10 +39,12 @@
     <div class="col-xs-8 col-sm-5  col-md-3 col-centered">
         <div class="row login-container " style="margin-top: calc(20%)">
             <div class="col-md-12 text-center">
-                <img src="<?=  base_url()?>assets/img/<?=$this->sigh->getInfo('hospital_logo')?>" style="width: 40%"><br><br>
+                <img src="<?=  base_url()?>assets/img/Hacking_Health_Camp_2018.png" style="width: 100%">
             </div>
             <div class="col-md-12 grid simple">
+                
                 <form name="form" class="login-form row-login grid-body" style="border-left: 4px solid <?=$this->sigh->getInfo('hospital_color')?>;padding-left: 20px;padding-right: 20px">
+                    
                     <div class="form-group">
                         <label>SELECCIONAR ÁREA</label>
                         <select class="select2 width100" name="empleado_area" id="empleado_area">

@@ -5,7 +5,7 @@
             <div class="grid-body">
                 <div class="row ">
                     <div class="col-md-2">
-                        <img src="<?= base_url()?>assets/img/<?=$this->sigh->getInfo('hospital_logo')?>" style="width: 120px;margin: 0px auto;display: table" >
+                        <img src="<?= base_url()?>assets/img/<?=$this->sigh->getInfo('hospital_logo')?>" style="width:160px;margin: 30px auto;display: table" >
                     </div>
                     <div class="col-md-10">
                         <h2 class="text-left" style="margin-top: 0px;"><b><?=$this->sigh->getInfo('hospital_clasificacion')?> | <?=$this->sigh->getInfo('hospital_tipo')?> <?=$this->sigh->getInfo('hospital_nombre')?></b></h2>

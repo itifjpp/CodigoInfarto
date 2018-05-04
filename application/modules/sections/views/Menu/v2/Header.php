@@ -228,8 +228,8 @@
                                     position: relative;
                                 }
                                 .sigh-logo-left img{
-                                    margin: 5px auto;
-                                    width: 65px;
+                                    margin: 20px auto;
+                                    width: 90px;
                                     
                                 }
                             </style>
